@@ -15,7 +15,7 @@ npm run start
 
 ## Usuario por defecto
 - Email: admin@relojesangel.com
-- Password: password123
+- Password: Password123
 
 ## Docker
 Construir y ejecutar con Docker Compose:
