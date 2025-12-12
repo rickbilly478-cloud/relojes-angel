@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catálogo de relojes - Relojes Angel">
+    <title>Catálogo | Relojes Angel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="/" class="logo">
+                <svg class="logo-icon" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="25" cy="25" r="23" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="25" cy="25" r="18" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="25" y1="25" x2="25" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="25" y1="25" x2="35" y2="25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="25" cy="25" r="2" fill="currentColor"/>
+                </svg>
+                <span class="logo-text">Relojes Angel</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="/" class="nav-link">Inicio</a></li>
+                <li><a href="/catalogo" class="nav-link active">Catálogo</a></li>
+                <li><a href="/#about" class="nav-link">Nosotros</a></li>
+                <li><a href="/#contact" class="nav-link">Contacto</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="/carrito" class="cart-btn" id="cartBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"/>
+                        <circle cx="20" cy="21" r="1"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+                <div class="auth-buttons" id="authButtons">
+                    <a href="/login" class="btn btn-outline">Iniciar Sesión</a>
+                    <a href="/register" class="btn btn-primary">Registrarse</a>
+                </div>
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <button class="user-btn" id="userBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <span id="userName">Usuario</span>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="/dashboard">Mi Cuenta</a>
+                        <a href="/carrito">Mi Carrito</a>
+                        <hr>
+                        <button id="logoutBtn">Cerrar Sesión</button>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Catálogo de Relojes</h1>
+            <p>Descubre nuestra colección completa de relojes premium</p>
+        </div>
+    </section>
+
+    <!-- Catalog Content -->
+    <main class="catalog">
+        <div class="container">
+            <div class="catalog-layout">
+                <!-- Sidebar Filters -->
+                <aside class="catalog-sidebar">
+                    <div class="filter-section">
+                        <h3>Categorías</h3>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="radio" name="categoria" value="" checked>
+                                <span>Todas</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="categoria" value="lujo">
+                                <span>Lujo</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="categoria" value="clasico">
+                                <span>Clásicos</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="categoria" value="deportivo">
+                                <span>Deportivos</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="categoria" value="smart">
+                                <span>Smartwatch</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3>Precio</h3>
+                        <div class="price-range">
+                            <input type="range" id="priceRange" min="0" max="3000" value="3000" step="100">
+                            <div class="price-values">
+                                <span>$0</span>
+                                <span id="maxPrice">$3000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3>Ordenar por</h3>
+                        <select id="sortBy" class="filter-select">
+                            <option value="destacado">Destacados</option>
+                            <option value="precio-asc">Precio: Menor a Mayor</option>
+                            <option value="precio-desc">Precio: Mayor a Menor</option>
+                            <option value="nombre">Nombre A-Z</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-outline btn-block" id="clearFilters">
+                        Limpiar Filtros
+                    </button>
+                </aside>
+
+                <!-- Products Grid -->
+                <div class="catalog-main">
+                    <div class="catalog-header">
+                        <p class="results-count">Mostrando <span id="resultsCount">0</span> productos</p>
+                        <div class="view-options">
+                            <button class="view-btn active" data-view="grid" title="Vista en cuadrícula">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="7" height="7"/>
+                                    <rect x="14" y="3" width="7" height="7"/>
+                                    <rect x="14" y="14" width="7" height="7"/>
+                                    <rect x="3" y="14" width="7" height="7"/>
+                                </svg>
+                            </button>
+                            <button class="view-btn" data-view="list" title="Vista en lista">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="8" y1="6" x2="21" y2="6"/>
+                                    <line x1="8" y1="12" x2="21" y2="12"/>
+                                    <line x1="8" y1="18" x2="21" y2="18"/>
+                                    <line x1="3" y1="6" x2="3.01" y2="6"/>
+                                    <line x1="3" y1="12" x2="3.01" y2="12"/>
+                                    <line x1="3" y1="18" x2="3.01" y2="18"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="products-grid" id="productsGrid">
+                        <div class="loading-spinner">
+                            <div class="spinner"></div>
+                            <p>Cargando productos...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modalImage" src="" alt="">
+                </div>
+                <div class="modal-info">
+                    <span class="modal-brand" id="modalBrand"></span>
+                    <h2 id="modalName"></h2>
+                    <p class="modal-description" id="modalDescription"></p>
+                    <div class="modal-price">
+                        <span class="current-price" id="modalPrice"></span>
+                        <span class="old-price" id="modalOldPrice"></span>
+                    </div>
+                    <div class="modal-stock" id="modalStock"></div>
+                    <div class="modal-actions">
+                        <button class="btn btn-primary btn-large" id="modalAddToCart">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"/>
+                                <circle cx="20" cy="21" r="1"/>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                            </svg>
+                            Agregar al Carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <svg class="logo-icon" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="25" cy="25" r="23" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="25" cy="25" r="18" stroke="currentColor" stroke-width="1.5"/>
+                            <line x1="25" y1="25" x2="25" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="25" y1="25" x2="35" y2="25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="25" cy="25" r="2" fill="currentColor"/>
+                        </svg>
+                        <span class="logo-text">Relojes Angel</span>
+                    </a>
+                    <p>Tu tienda de confianza para relojes premium desde 2004.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="/catalogo">Catálogo</a></li>
+                        <li><a href="/#about">Nosotros</a></li>
+                        <li><a href="/#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Ayuda</h4>
+                    <ul>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Envíos</a></li>
+                        <li><a href="#">Devoluciones</a></li>
+                        <li><a href="#">Garantía</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Relojes Angel. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="/js/validation.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            let allProducts = [];
+            let filteredProducts = [];
+
+            // Cargar productos
+            async function loadProducts() {
+                try {
+                    const response = await fetch('/api/productos');
+                    allProducts = await response.json();
+                    applyFilters();
+                } catch (error) {
+                    console.error('Error loading products:', error);
+                    document.getElementById('productsGrid').innerHTML = `
+                        <div class="error-state">
+                            <p>Error al cargar los productos. Intenta de nuevo.</p>
+                        </div>
+                    `;
+                }
+            }
+
+            // Aplicar filtros
+            function applyFilters() {
+                const categoria = document.querySelector('input[name="categoria"]:checked')?.value || '';
+                const maxPrice = parseInt(document.getElementById('priceRange').value);
+                const sortBy = document.getElementById('sortBy').value;
+
+                filteredProducts = allProducts.filter(product => {
+                    if (categoria && product.categoria !== categoria) return false;
+                    if (product.precio > maxPrice) return false;
+                    return true;
+                });
+
+                // Ordenar
+                switch (sortBy) {
+                    case 'precio-asc':
+                        filteredProducts.sort((a, b) => a.precio - b.precio);
+                        break;
+                    case 'precio-desc':
+                        filteredProducts.sort((a, b) => b.precio - a.precio);
+                        break;
+                    case 'nombre':
+                        filteredProducts.sort((a, b) => a.nombre.localeCompare(b.nombre));
+                        break;
+                    default:
+                        filteredProducts.sort((a, b) => b.destacado - a.destacado);
+                }
+
+                renderProducts();
+            }
+
+            // Renderizar productos
+            function renderProducts() {
+                const grid = document.getElementById('productsGrid');
+                document.getElementById('resultsCount').textContent = filteredProducts.length;
+
+                if (filteredProducts.length === 0) {
+                    grid.innerHTML = `
+                        <div class="empty-state">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="m21 21-4.35-4.35"/>
+                            </svg>
+                            <h3>No se encontraron productos</h3>
+                            <p>Intenta ajustar los filtros</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                grid.innerHTML = filteredProducts.map(product => `
+                    <article class="product-card" data-id="${product.id}">
+                        ${product.destacado ? '<span class="product-badge">Destacado</span>' : ''}
+                        ${product.precio_anterior ? '<span class="product-badge sale">Oferta</span>' : ''}
+                        <div class="product-image">
+                            <img src="${product.imagen}" alt="${product.nombre}" loading="lazy">
+                            <div class="product-overlay">
+                                <button class="quick-view-btn" data-id="${product.id}">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                    Vista Rápida
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-brand">${product.marca}</span>
+                            <h3 class="product-name">${product.nombre}</h3>
+                            <div class="product-price">
+                                <span class="current-price">$${product.precio.toFixed(2)}</span>
+                                ${product.precio_anterior ? `<span class="old-price">$${product.precio_anterior.toFixed(2)}</span>` : ''}
+                            </div>
+                            <button class="btn btn-primary btn-block add-to-cart-btn" data-id="${product.id}">
+                                Agregar al Carrito
+                            </button>
+                        </div>
+                    </article>
+                `).join('');
+
+                // Event listeners para botones
+                document.querySelectorAll('.quick-view-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openProductModal(btn.dataset.id);
+                    });
+                });
+
+                document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        addToCart(btn.dataset.id);
+                    });
+                });
+
+                document.querySelectorAll('.product-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        openProductModal(card.dataset.id);
+                    });
+                });
+            }
+
+            // Modal de producto
+            function openProductModal(productId) {
+                const product = allProducts.find(p => p.id == productId);
+                if (!product) return;
+
+                document.getElementById('modalImage').src = product.imagen;
+                document.getElementById('modalImage').alt = product.nombre;
+                document.getElementById('modalBrand').textContent = product.marca;
+                document.getElementById('modalName').textContent = product.nombre;
+                document.getElementById('modalDescription').textContent = product.descripcion;
+                document.getElementById('modalPrice').textContent = `$${product.precio.toFixed(2)}`;
+                
+                const oldPrice = document.getElementById('modalOldPrice');
+                if (product.precio_anterior) {
+                    oldPrice.textContent = `$${product.precio_anterior.toFixed(2)}`;
+                    oldPrice.style.display = 'inline';
+                } else {
+                    oldPrice.style.display = 'none';
+                }
+
+                const stockEl = document.getElementById('modalStock');
+                if (product.stock > 10) {
+                    stockEl.innerHTML = `<span class="in-stock">✓ En stock</span>`;
+                } else if (product.stock > 0) {
+                    stockEl.innerHTML = `<span class="low-stock">¡Solo quedan ${product.stock}!</span>`;
+                } else {
+                    stockEl.innerHTML = `<span class="out-stock">Agotado</span>`;
+                }
+
+                document.getElementById('modalAddToCart').dataset.id = product.id;
+                document.getElementById('productModal').classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Cerrar modal
+            document.getElementById('closeModal').addEventListener('click', closeModal);
+            document.querySelector('.modal-overlay').addEventListener('click', closeModal);
+            
+            function closeModal() {
+                document.getElementById('productModal').classList.remove('show');
+                document.body.style.overflow = '';
+            }
+
+            // Agregar al carrito
+            async function addToCart(productId) {
+                const session = await checkSession();
+                if (!session.authenticated) {
+                    showToast('Debes iniciar sesión para agregar productos al carrito', 'warning');
+                    setTimeout(() => {
+                        window.location.href = '/login';
+                    }, 1500);
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/api/carrito', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ productoId: parseInt(productId) })
+                    });
+
+                    if (response.ok) {
+                        showToast('Producto agregado al carrito', 'success');
+                        updateCartCount();
+                        closeModal();
+                    } else {
+                        const data = await response.json();
+                        showToast(data.error || 'Error al agregar al carrito', 'error');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    showToast('Error de conexión', 'error');
+                }
+            }
+
+            // Modal add to cart button
+            document.getElementById('modalAddToCart').addEventListener('click', function() {
+                addToCart(this.dataset.id);
+            });
+
+            // Event listeners para filtros
+            document.querySelectorAll('input[name="categoria"]').forEach(input => {
+                input.addEventListener('change', applyFilters);
+            });
+
+            document.getElementById('priceRange').addEventListener('input', function() {
+                document.getElementById('maxPrice').textContent = `$${this.value}`;
+                applyFilters();
+            });
+
+            document.getElementById('sortBy').addEventListener('change', applyFilters);
+
+            document.getElementById('clearFilters').addEventListener('click', function() {
+                document.querySelector('input[name="categoria"][value=""]').checked = true;
+                document.getElementById('priceRange').value = 3000;
+                document.getElementById('maxPrice').textContent = '$3000';
+                document.getElementById('sortBy').value = 'destacado';
+                applyFilters();
+            });
+
+            // View options
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const grid = document.getElementById('productsGrid');
+                    if (this.dataset.view === 'list') {
+                        grid.classList.add('list-view');
+                    } else {
+                        grid.classList.remove('list-view');
+                    }
+                });
+            });
+
+            // Check URL params for category filter
+            const urlParams = new URLSearchParams(window.location.search);
+            const categoryParam = urlParams.get('categoria');
+            if (categoryParam) {
+                const radioBtn = document.querySelector(`input[name="categoria"][value="${categoryParam}"]`);
+                if (radioBtn) radioBtn.checked = true;
+            }
+
+            // Cargar productos
+            await loadProducts();
+        });
+    </script>
+</body>
+</html>

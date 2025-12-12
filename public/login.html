@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Iniciar sesión en Relojes Angel">
+    <title>Iniciar Sesión | Relojes Angel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+</head>
+<body class="auth-page">
+    <!-- Header simplificado -->
+    <header class="header header-auth">
+        <nav class="nav container">
+            <a href="/" class="logo">
+                <svg class="logo-icon" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="25" cy="25" r="23" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="25" cy="25" r="18" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="25" y1="25" x2="25" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="25" y1="25" x2="35" y2="25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="25" cy="25" r="2" fill="currentColor"/>
+                </svg>
+                <span class="logo-text">Relojes Angel</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- Login Form -->
+    <main class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Bienvenido de nuevo</h1>
+                <p>Ingresa tus credenciales para acceder a tu cuenta</p>
+            </div>
+
+            <form class="auth-form" id="loginForm" novalidate>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="tu@email.com"
+                            required
+                            autocomplete="email"
+                        >
+                    </div>
+                    <span class="error-message" id="emailError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Tu contraseña"
+                            required
+                            autocomplete="current-password"
+                            minlength="8"
+                        >
+                        <button type="button" class="toggle-password" id="togglePassword" aria-label="Mostrar contraseña">
+                            <svg class="eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                            <svg class="eye-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                                <line x1="1" y1="1" x2="23" y2="23"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="error-message" id="passwordError"></span>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id="rememberMe" name="rememberMe">
+                        <span class="checkmark"></span>
+                        Recordarme
+                    </label>
+                    <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+                    <span class="btn-text">Iniciar Sesión</span>
+                    <span class="btn-loader" style="display: none;">
+                        <svg class="spinner" width="20" height="20" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="32" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                </button>
+
+                <div class="form-divider">
+                    <span>o</span>
+                </div>
+
+                <div class="demo-credentials">
+                    <p><strong>Credenciales de prueba:</strong></p>
+                    <p>Email: <code>admin@relojesangel.com</code></p>
+                    <p>Contraseña: <code>password123</code></p>
+                </div>
+            </form>
+
+            <div class="auth-footer">
+                <p>¿No tienes una cuenta? <a href="/register">Regístrate aquí</a></p>
+            </div>
+        </div>
+
+        <div class="auth-image">
+            <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=800" alt="Reloj elegante">
+            <div class="auth-image-overlay">
+                <blockquote>
+                    "El tiempo es lo que más queremos, pero lo que peor usamos."
+                    <cite>— William Penn</cite>
+                </blockquote>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="/js/validation.js"></script>
+    <script src="/js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const togglePassword = document.getElementById('togglePassword');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Toggle password visibility
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.type === 'password' ? 'text' : 'password';
+                passwordInput.type = type;
+                
+                const eyeOpen = this.querySelector('.eye-open');
+                const eyeClosed = this.querySelector('.eye-closed');
+                
+                if (type === 'text') {
+                    eyeOpen.style.display = 'none';
+                    eyeClosed.style.display = 'block';
+                } else {
+                    eyeOpen.style.display = 'block';
+                    eyeClosed.style.display = 'none';
+                }
+            });
+
+            // Validación en tiempo real
+            emailInput.addEventListener('blur', function() {
+                validateEmail(this);
+            });
+
+            passwordInput.addEventListener('blur', function() {
+                validatePassword(this);
+            });
+
+            // Form submission
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                // Validar campos
+                const isEmailValid = validateEmail(emailInput);
+                const isPasswordValid = validatePassword(passwordInput);
+
+                if (!isEmailValid || !isPasswordValid) {
+                    showToast('Por favor corrige los errores en el formulario', 'error');
+                    return;
+                }
+
+                // Mostrar loader
+                submitBtn.disabled = true;
+                submitBtn.querySelector('.btn-text').style.display = 'none';
+                submitBtn.querySelector('.btn-loader').style.display = 'flex';
+
+                try {
+                    const response = await fetch('/api/auth/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            email: emailInput.value.trim(),
+                            password: passwordInput.value
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        showToast('¡Inicio de sesión exitoso!', 'success');
+                        setTimeout(() => {
+                            window.location.href = '/dashboard';
+                        }, 1000);
+                    } else {
+                        showToast(data.error || 'Error al iniciar sesión', 'error');
+                        submitBtn.disabled = false;
+                        submitBtn.querySelector('.btn-text').style.display = 'block';
+                        submitBtn.querySelector('.btn-loader').style.display = 'none';
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    showToast('Error de conexión. Intenta de nuevo.', 'error');
+                    submitBtn.disabled = false;
+                    submitBtn.querySelector('.btn-text').style.display = 'block';
+                    submitBtn.querySelector('.btn-loader').style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

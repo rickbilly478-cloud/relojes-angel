@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mi cuenta - Relojes Angel">
+    <title>Mi Cuenta | Relojes Angel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="/" class="logo">
+                <svg class="logo-icon" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="25" cy="25" r="23" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="25" cy="25" r="18" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="25" y1="25" x2="25" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="25" y1="25" x2="35" y2="25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="25" cy="25" r="2" fill="currentColor"/>
+                </svg>
+                <span class="logo-text">Relojes Angel</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="/" class="nav-link">Inicio</a></li>
+                <li><a href="/catalogo" class="nav-link">Catálogo</a></li>
+                <li><a href="/#about" class="nav-link">Nosotros</a></li>
+                <li><a href="/#contact" class="nav-link">Contacto</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="/carrito" class="cart-btn" id="cartBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"/>
+                        <circle cx="20" cy="21" r="1"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+                <div class="user-menu" id="userMenu">
+                    <button class="user-btn" id="userBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <span id="userName">Usuario</span>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="/dashboard" class="active">Mi Cuenta</a>
+                        <a href="/carrito">Mi Carrito</a>
+                        <hr>
+                        <button id="logoutBtn">Cerrar Sesión</button>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Dashboard Content -->
+    <main class="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Mi Cuenta</h1>
+                <p>Bienvenido de nuevo, <span id="welcomeName">Usuario</span></p>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Sidebar -->
+                <aside class="dashboard-sidebar">
+                    <nav class="dashboard-nav">
+                        <a href="#profile" class="dashboard-nav-link active" data-section="profile">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            Mi Perfil
+                        </a>
+                        <a href="#orders" class="dashboard-nav-link" data-section="orders">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                                <line x1="3" y1="6" x2="21" y2="6"/>
+                                <path d="M16 10a4 4 0 0 1-8 0"/>
+                            </svg>
+                            Mis Pedidos
+                        </a>
+                        <a href="#favorites" class="dashboard-nav-link" data-section="favorites">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                            Favoritos
+                        </a>
+                        <a href="#settings" class="dashboard-nav-link" data-section="settings">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                            </svg>
+                            Configuración
+                        </a>
+                    </nav>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="dashboard-content">
+                    <!-- Profile Section -->
+                    <section id="profile" class="dashboard-section active">
+                        <div class="section-card">
+                            <div class="section-card-header">
+                                <h2>Información Personal</h2>
+                            </div>
+                            <div class="section-card-body">
+                                <div class="profile-info">
+                                    <div class="profile-avatar">
+                                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                            <circle cx="12" cy="7" r="4"/>
+                                        </svg>
+                                    </div>
+                                    <div class="profile-details">
+                                        <h3 id="profileName">Cargando...</h3>
+                                        <p id="profileEmail">Cargando...</p>
+                                        <span class="badge" id="accountType">Usuario</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                                        <line x1="3" y1="6" x2="21" y2="6"/>
+                                        <path d="M16 10a4 4 0 0 1-8 0"/>
+                                    </svg>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="totalOrders">0</span>
+                                    <span class="stat-label">Pedidos Totales</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                    </svg>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="totalFavorites">0</span>
+                                    <span class="stat-label">Favoritos</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="9" cy="21" r="1"/>
+                                        <circle cx="20" cy="21" r="1"/>
+                                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                                    </svg>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="cartItems">0</span>
+                                    <span class="stat-label">En el Carrito</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Orders Section -->
+                    <section id="orders" class="dashboard-section">
+                        <div class="section-card">
+                            <div class="section-card-header">
+                                <h2>Mis Pedidos</h2>
+                            </div>
+                            <div class="section-card-body">
+                                <div class="empty-state">
+                                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                                        <line x1="3" y1="6" x2="21" y2="6"/>
+                                        <path d="M16 10a4 4 0 0 1-8 0"/>
+                                    </svg>
+                                    <h3>No tienes pedidos aún</h3>
+                                    <p>Cuando realices una compra, aparecerá aquí</p>
+                                    <a href="/catalogo" class="btn btn-primary">Explorar Catálogo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Favorites Section -->
+                    <section id="favorites" class="dashboard-section">
+                        <div class="section-card">
+                            <div class="section-card-header">
+                                <h2>Mis Favoritos</h2>
+                            </div>
+                            <div class="section-card-body">
+                                <div class="empty-state">
+                                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                    </svg>
+                                    <h3>No tienes favoritos</h3>
+                                    <p>Guarda tus relojes favoritos para verlos después</p>
+                                    <a href="/catalogo" class="btn btn-primary">Explorar Catálogo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Settings Section -->
+                    <section id="settings" class="dashboard-section">
+                        <div class="section-card">
+                            <div class="section-card-header">
+                                <h2>Configuración</h2>
+                            </div>
+                            <div class="section-card-body">
+                                <form class="settings-form" id="settingsForm">
+                                    <div class="form-group">
+                                        <label>Notificaciones por email</label>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ofertas y promociones</label>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Novedades de productos</label>
+                                        <label class="switch">
+                                            <input type="checkbox">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </form>
+
+                                <hr>
+
+                                <div class="danger-zone">
+                                    <h3>Zona de Peligro</h3>
+                                    <p>Las siguientes acciones son irreversibles</p>
+                                    <button class="btn btn-danger" id="deleteAccountBtn">Eliminar Cuenta</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer footer-simple">
+        <div class="container">
+            <p>&copy; 2024 Relojes Angel. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="/js/validation.js"></script>
+    <script src="/js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Verificar autenticación
+            const session = await checkSession();
+            if (!session.authenticated) {
+                window.location.href = '/login';
+                return;
+            }
+
+            // Actualizar UI con datos del usuario
+            const user = session.user;
+            document.getElementById('userName').textContent = user.nombre;
+            document.getElementById('welcomeName').textContent = user.nombre;
+            document.getElementById('profileName').textContent = user.nombre;
+            document.getElementById('profileEmail').textContent = user.email;
+            
+            if (user.isDefault) {
+                document.getElementById('accountType').textContent = 'Administrador';
+                document.getElementById('accountType').classList.add('badge-admin');
+            }
+
+            // Navegación del dashboard
+            const navLinks = document.querySelectorAll('.dashboard-nav-link');
+            const sections = document.querySelectorAll('.dashboard-section');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+
+                    this.classList.add('active');
+                    document.getElementById(sectionId).classList.add('active');
+                });
+            });
+
+            // User menu toggle
+            const userBtn = document.getElementById('userBtn');
+            const userDropdown = document.getElementById('userDropdown');
+
+            userBtn.addEventListener('click', function() {
+                userDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!userBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+                    userDropdown.classList.remove('show');
+                }
+            });
+
+            // Logout
+            document.getElementById('logoutBtn').addEventListener('click', async function() {
+                await logout();
+            });
+        });
+    </script>
+</body>
+</html>

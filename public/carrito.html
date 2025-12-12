@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mi carrito - Relojes Angel">
+    <title>Carrito | Relojes Angel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="/" class="logo">
+                <svg class="logo-icon" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="25" cy="25" r="23" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="25" cy="25" r="18" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="25" y1="25" x2="25" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="25" y1="25" x2="35" y2="25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="25" cy="25" r="2" fill="currentColor"/>
+                </svg>
+                <span class="logo-text">Relojes Angel</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="/" class="nav-link">Inicio</a></li>
+                <li><a href="/catalogo" class="nav-link">Catálogo</a></li>
+                <li><a href="/#about" class="nav-link">Nosotros</a></li>
+                <li><a href="/#contact" class="nav-link">Contacto</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="/carrito" class="cart-btn active" id="cartBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"/>
+                        <circle cx="20" cy="21" r="1"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+                <div class="auth-buttons" id="authButtons">
+                    <a href="/login" class="btn btn-outline">Iniciar Sesión</a>
+                    <a href="/register" class="btn btn-primary">Registrarse</a>
+                </div>
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <button class="user-btn" id="userBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <span id="userName">Usuario</span>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="/dashboard">Mi Cuenta</a>
+                        <a href="/carrito" class="active">Mi Carrito</a>
+                        <hr>
+                        <button id="logoutBtn">Cerrar Sesión</button>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Mi Carrito</h1>
+            <p>Revisa tus productos antes de finalizar la compra</p>
+        </div>
+    </section>
+
+    <!-- Cart Content -->
+    <main class="cart-page">
+        <div class="container">
+            <!-- Not logged in state -->
+            <div class="cart-login-required" id="loginRequired" style="display: none;">
+                <div class="empty-state">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                    <h3>Inicia sesión para ver tu carrito</h3>
+                    <p>Necesitas una cuenta para agregar productos al carrito</p>
+                    <div class="empty-state-actions">
+                        <a href="/login" class="btn btn-primary">Iniciar Sesión</a>
+                        <a href="/register" class="btn btn-outline">Crear Cuenta</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart content -->
+            <div class="cart-content" id="cartContent" style="display: none;">
+                <div class="cart-layout">
+                    <!-- Cart Items -->
+                    <div class="cart-items" id="cartItems">
+                        <div class="loading-spinner">
+                            <div class="spinner"></div>
+                            <p>Cargando carrito...</p>
+                        </div>
+                    </div>
+
+                    <!-- Cart Summary -->
+                    <aside class="cart-summary">
+                        <div class="summary-card">
+                            <h3>Resumen del Pedido</h3>
+                            
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span id="subtotal">$0.00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Envío</span>
+                                <span id="shipping">Gratis</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Impuestos (12%)</span>
+                                <span id="taxes">$0.00</span>
+                            </div>
+                            
+                            <hr>
+                            
+                            <div class="summary-row total">
+                                <span>Total</span>
+                                <span id="total">$0.00</span>
+                            </div>
+
+                            <button class="btn btn-primary btn-block btn-large" id="checkoutBtn">
+                                Proceder al Pago
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                    <polyline points="12 5 19 12 12 19"/>
+                                </svg>
+                            </button>
+
+                            <div class="secure-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                </svg>
+                                Pago seguro garantizado
+                            </div>
+
+                            <div class="payment-methods">
+                                <span>Aceptamos:</span>
+                                <div class="payment-icons">
+                                    <span class="payment-icon">💳</span>
+                                    <span class="payment-icon">🏦</span>
+                                    <span class="payment-icon">📱</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="promo-code">
+                            <h4>¿Tienes un código de descuento?</h4>
+                            <div class="promo-input">
+                                <input type="text" placeholder="Código promocional">
+                                <button class="btn btn-outline">Aplicar</button>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+
+            <!-- Empty cart state -->
+            <div class="cart-empty" id="cartEmpty" style="display: none;">
+                <div class="empty-state">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="9" cy="21" r="1"/>
+                        <circle cx="20" cy="21" r="1"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    </svg>
+                    <h3>Tu carrito está vacío</h3>
+                    <p>Parece que aún no has agregado productos</p>
+                    <a href="/catalogo" class="btn btn-primary btn-large">
+                        Explorar Catálogo
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer footer-simple">
+        <div class="container">
+            <p>&copy; 2024 Relojes Angel. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="/js/validation.js"></script>
+    <script src="/js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            const loginRequired = document.getElementById('loginRequired');
+            const cartContent = document.getElementById('cartContent');
+            const cartEmpty = document.getElementById('cartEmpty');
+            const cartItems = document.getElementById('cartItems');
+
+            // Verificar sesión
+            const session = await checkSession();
+            
+            if (!session.authenticated) {
+                loginRequired.style.display = 'block';
+                return;
+            }
+
+            // Usuario autenticado - cargar carrito
+            await loadCart();
+
+            async function loadCart() {
+                try {
+                    const response = await fetch('/api/carrito');
+                    
+                    if (!response.ok) {
+                        throw new Error('Error al cargar el carrito');
+                    }
+
+                    const items = await response.json();
+
+                    if (items.length === 0) {
+                        cartEmpty.style.display = 'block';
+                        return;
+                    }
+
+                    cartContent.style.display = 'block';
+                    renderCartItems(items);
+                    updateSummary(items);
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    cartItems.innerHTML = `
+                        <div class="error-state">
+                            <p>Error al cargar el carrito. <a href="/carrito">Intenta de nuevo</a></p>
+                        </div>
+                    `;
+                }
+            }
+
+            function renderCartItems(items) {
+                cartItems.innerHTML = `
+                    <div class="cart-header">
+                        <span>Producto</span>
+                        <span>Precio</span>
+                        <span>Cantidad</span>
+                        <span>Total</span>
+                        <span></span>
+                    </div>
+                    ${items.map(item => `
+                        <div class="cart-item" data-id="${item.producto_id}">
+                            <div class="cart-item-product">
+                                <img src="${item.imagen}" alt="${item.nombre}">
+                                <div class="cart-item-info">
+                                    <span class="cart-item-brand">${item.marca}</span>
+                                    <h4>${item.nombre}</h4>
+                                </div>
+                            </div>
+                            <div class="cart-item-price">
+                                $${item.precio.toFixed(2)}
+                            </div>
+                            <div class="cart-item-quantity">
+                                <span>${item.cantidad}</span>
+                            </div>
+                            <div class="cart-item-total">
+                                $${(item.precio * item.cantidad).toFixed(2)}
+                            </div>
+                            <button class="cart-item-remove" data-id="${item.producto_id}" title="Eliminar">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"/>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                                </svg>
+                            </button>
+                        </div>
+                    `).join('')}
+                `;
+
+                // Event listeners para eliminar
+                document.querySelectorAll('.cart-item-remove').forEach(btn => {
+                    btn.addEventListener('click', async function() {
+                        await removeFromCart(this.dataset.id);
+                    });
+                });
+            }
+
+            function updateSummary(items) {
+                const subtotal = items.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+                const shipping = subtotal >= 500 ? 0 : 25;
+                const taxes = subtotal * 0.12;
+                const total = subtotal + shipping + taxes;
+
+                document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+                document.getElementById('shipping').textContent = shipping === 0 ? 'Gratis' : `$${shipping.toFixed(2)}`;
+                document.getElementById('taxes').textContent = `$${taxes.toFixed(2)}`;
+                document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+
+                // Actualizar contador del carrito
+                const itemCount = items.reduce((sum, item) => sum + item.cantidad, 0);
+                document.getElementById('cartCount').textContent = itemCount;
+            }
+
+            async function removeFromCart(productId) {
+                try {
+                    const response = await fetch(`/api/carrito/${productId}`, {
+                        method: 'DELETE'
+                    });
+
+                    if (response.ok) {
+                        showToast('Producto eliminado del carrito', 'success');
+                        await loadCart();
+                        updateCartCount();
+
+                        // Verificar si el carrito quedó vacío
+                        const cartResponse = await fetch('/api/carrito');
+                        const items = await cartResponse.json();
+                        
+                        if (items.length === 0) {
+                            cartContent.style.display = 'none';
+                            cartEmpty.style.display = 'block';
+                        }
+                    } else {
+                        showToast('Error al eliminar el producto', 'error');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    showToast('Error de conexión', 'error');
+                }
+            }
+
+            // Checkout button
+            document.getElementById('checkoutBtn').addEventListener('click', function() {
+                showToast('¡Gracias por tu interés! El proceso de pago estará disponible próximamente.', 'info');
+            });
+
+            // User menu
+            const userBtn = document.getElementById('userBtn');
+            const userDropdown = document.getElementById('userDropdown');
+
+            if (userBtn) {
+                userBtn.addEventListener('click', function() {
+                    userDropdown.classList.toggle('show');
+                });
+
+                document.addEventListener('click', function(e) {
+                    if (!userBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+                        userDropdown.classList.remove('show');
+                    }
+                });
+            }
+
+            // Logout
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', async function() {
+                    await logout();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
